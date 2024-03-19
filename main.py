@@ -5,10 +5,9 @@ import data_processing
 def fetch_ticket_prices():
     html_dict = http_requests.get_html_from_skyscanner()
     ticket_prices_dict = html_parser.parse_html(html_dict)
-    processed_prices = data_processing.process_data(ticket_prices_dict)
-    return processed_prices
+    processed_data = data_processing.process_data(ticket_prices_dict)
+    return processed_data
 
 if __name__ == "__main__":
-    prices = fetch_ticket_prices()
-    #print(prices)  # Optional: Print prices to console for verification
-    #data_processing.save_to_csv(prices, "ticket_prices.csv")
+    processed_data = fetch_ticket_prices()
+    data_processing.save_to_csv(processed_data, f"C:\\Users\\Admin\\Documents\\tickets_info.csv")

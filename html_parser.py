@@ -10,6 +10,7 @@ def parse_html(html_dict):
         soup = BeautifulSoup(html, 'html.parser')
         recommendations = soup.find_all("div", class_="BpkTicket_bpk-ticket__NzNiO")
         print(idx)
+        ticket_prices_dict[idx] = []
         # 找到推荐的机票信息所在的容器
         for recommendation in recommendations:
             try:
@@ -19,7 +20,8 @@ def parse_html(html_dict):
                 time_duration=recommendation.find("span", class_="BpkText_bpk-text__MWZkY BpkText_bpk-text--xs__ZDJmY Duration_duration__NmUyM").get_text()
                 dep_time = recommendation.find_all("span", class_="BpkText_bpk-text__MWZkY BpkText_bpk-text--subheading__NzkwO")[0].get_text()
                 des_time = recommendation.find_all("span", class_="BpkText_bpk-text__MWZkY BpkText_bpk-text--subheading__NzkwO")[1].get_text()
-                print(f"{aircompany}, {price}, {fly_way}, {time_duration}, {dep_time}, {des_time}")
+                ticket_prices_dict[idx].append([aircompany,price,fly_way,time_duration,dep_time,des_time])
+                #print(f"{aircompany}, {price}, {fly_way}, {time_duration}, {dep_time}, {des_time}")
             except:
                 print(Exception)
             
