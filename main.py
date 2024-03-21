@@ -10,4 +10,5 @@ def fetch_ticket_prices():
 
 if __name__ == "__main__":
     processed_data = fetch_ticket_prices()
-    data_processing.save_to_csv(processed_data, f"C:\\Users\\Admin\\Documents\\tickets_info.csv")
+    print(processed_data)
+    data_processing.save_to_csv(processed_data, f"output\\tickets_info.csv")

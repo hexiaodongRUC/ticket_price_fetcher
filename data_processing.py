@@ -1,6 +1,7 @@
 # data_processing.py
 
 import pandas as pd
+import datetime
 
 def remove_chars(s, chars):
     for char in chars:
@@ -16,7 +17,8 @@ def process_data(ticket_prices_dict):
     columns = ["起始地-目的地", "航空公司", "价格", "飞行方式", "总时长", "出发时间", "到达时间"]
     df = pd.DataFrame(arr, columns=columns, index=None)
     df['价格'] = df['价格'].apply(lambda x:int(remove_chars(x[3:], ",")))
+    df["数据日期"] = datetime.date.today()
     return df
 
 def save_to_csv(df, filename):
-    df.to_csv(filename, index=False)
+    df.to_csv(filename, mode="a", index=False, header=False)
